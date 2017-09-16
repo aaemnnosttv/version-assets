@@ -33,6 +33,17 @@ class VersionAssetsTest extends \WP_UnitTestCase
     }
 
     /** @test */
+    function it_preserves_the_registered_version_if_the_asset_file_cannot_be_located()
+    {
+        wp_enqueue_style('test-missing', WP_CONTENT_URL . '/test-non-existent.css', [], 'registered-version');
+
+        $url = $this->get_enqueued_url('test-missing');
+        parse_str(parse_url($url, PHP_URL_QUERY), $url_query_params);
+        $this->assertContains('registered-version', $url);
+        $this->assertEquals(['ver' => 'registered-version'], $url_query_params);
+    }
+
+    /** @test */
     function it_replaces_the_global_wp_styles_instance_when_it_is_initialzed()
     {
         $instance = wp_styles();

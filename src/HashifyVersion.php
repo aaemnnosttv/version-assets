@@ -23,7 +23,7 @@ trait HashifyVersion
     public function add($handle, $src, $deps = [], $ver = false, $args = null)
     {
         if (! $ver || strlen($ver) < 32) {
-            $ver = get_hash($src);
+            $ver = get_hash($src) ?: $ver;
         }
 
         return parent::add($handle, $src, $deps, $ver, $args);
