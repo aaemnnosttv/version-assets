@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<ruleset name="Version Assets">
+  <description>Version Assets Coding Standards</description>
+
+  <!-- Scan all files in directory -->
+  <file>.</file>
+
+  <!-- Scan only PHP files -->
+  <arg name="extensions" value="php"/>
+
+  <!-- Ignore Composer dependencies -->
+  <exclude-pattern>vendor/</exclude-pattern>
+
+  <!-- Show colors in console -->
+  <arg value="-colors"/>
+
+  <!-- Show sniff codes in all reports -->
+  <arg value="ns"/>
+
+  <!-- Use PSR-2 as a base -->
+  <rule ref="PSR2"/>
+
+  <!-- Allow snake_case method names in test cases -->
+  <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+    <exclude-pattern>tests/(feature|unit)</exclude-pattern>
+  </rule>
+
+  <!-- Don't require method visibility in test cases -->
+  <rule ref="Squiz.Scope.MethodScope.Missing">
+    <exclude-pattern>tests/(feature|unit)</exclude-pattern>
+  </rule>
+</ruleset>

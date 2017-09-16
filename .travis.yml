@@ -1,0 +1,21 @@
+language: php
+
+php:
+  - 5.6
+  - 7.0
+  - 7.1
+
+env:
+  global:
+    - WP_TESTS_DIR=/tmp/wordpress-tests-lib
+
+before_install: composer validate --strict
+
+install: composer install
+
+before_script:
+  - composer lint
+  - mysql -u root -e "GRANT ALL PRIVILEGES ON wp_tests.* TO wp IDENTIFIED BY 'password';"
+  - bash tests/bin/install-wp-tests.sh wp_tests wp password
+
+script: composer test
