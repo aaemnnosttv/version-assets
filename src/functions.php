@@ -19,19 +19,11 @@ function get_local_path($src)
         return false;
     }
 
-    $path = parse_url($src, PHP_URL_PATH);
-    $clean_path = ltrim($path, '/');
-    $base_paths = [
-        ABSPATH,
-        WP_CONTENT_DIR,
-    ];
+    $web_root  = apply_filters('version_assets/web_root', dirname(WP_CONTENT_DIR));
+    $file_path = path_join($web_root, ltrim(parse_url($src, PHP_URL_PATH), '/\\'));
 
-    foreach ($base_paths as $base_path) {
-        $realpath = realpath(path_join($base_path, $clean_path));
-
-        if ($realpath) {
-            return $realpath;
-        }
+    if (realpath($file_path)) {
+        return $file_path;
     }
 
     return false;
