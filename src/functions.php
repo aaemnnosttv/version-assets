@@ -11,10 +11,8 @@ namespace VersionAssets;
  */
 function get_hash($src)
 {
-    $filepath = get_local_path($src);
-
-    if ($filepath) {
-        return md5_file($filepath);
+    if ($file_path = get_local_path($src)) {
+        return md5_file($file_path);
     }
 
     return false;
