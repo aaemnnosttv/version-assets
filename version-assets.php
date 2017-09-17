@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Version Assets
  * Plugin URI: https://aaemnnost.tv/version-assets/
- * Description: Automatically apply a content-based version on all of your assets to optimize browser caching.
+ * Description: Automatically apply a content-based version on all of your assets to optimize browser caching. This plugin has no settings.
  * Author: Evan Mattson
  * Author URI: https://aaemnnost.tv
  * License: GPLv2
