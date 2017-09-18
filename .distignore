@@ -1,0 +1,13 @@
+.distignore
+.git/*
+.gitignore
+.editorconfig
+.idea/*
+.travis.yml
+composer.json
+composer.lock
+phpcs.xml
+phpunit.xml
+README.md
+tests/*
+vendor/*
