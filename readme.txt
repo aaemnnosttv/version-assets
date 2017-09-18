@@ -12,12 +12,12 @@ Automatically apply a content-based version on all of your assets to optimize br
 
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/version-assets/` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the \'Plugins\' screen in WordPress
+1. Activate the plugin through the Plugins screen in WordPress
 
 == Screenshots ==
-1. Before activating Version Assets
-2. After activating Version Assets
+1. Diff of affected assets in <head> element (purple: before, green: after)
+2. Diff of affected assets in footer scripts (purple: before, green: after)
 
 == Changelog ==
-= 1.0 (2017-10-01) =
+= 1.0 (2017-09-18) =
 * Initial release!
