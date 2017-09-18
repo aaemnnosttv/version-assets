@@ -15,7 +15,7 @@ Automatically apply a content-based version on all of your assets to optimize br
 1. Activate the plugin through the Plugins screen in WordPress
 
 == Screenshots ==
-1. Diff of affected assets in <head> element (purple: before, green: after)
+1. Diff of affected assets in head element (purple: before, green: after)
 2. Diff of affected assets in footer scripts (purple: before, green: after)
 
 == Changelog ==
