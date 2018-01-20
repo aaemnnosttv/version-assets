@@ -2,7 +2,7 @@
     "name": "aaemnnosttv/version-assets",
     "description": "A WordPress plugin to automatically apply a content-based version on all of your assets to optimize browser caching.",
     "type": "wordpress-plugin",
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Evan Mattson",
