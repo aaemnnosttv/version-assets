@@ -1,21 +1,34 @@
 language: php
 
-php:
-  - 5.6
-  - 7.0
-  - 7.1
-
 env:
   global:
-    - WP_TESTS_DIR=/tmp/wordpress-tests-lib
+    - WP_DB_USER=wp
+    - WP_DB_PASS=password
+    - WP_DB_NAME=wp_tests
+    - WP_VERSION=*
 
-before_install: composer validate --strict
+php:
+  - 7.2
+  - 7.1
+  - 7.0
+  - 5.6
 
-install: composer install
+matrix:
+  include:
+    - php: 7.2
+      env: WP_VERSION=4.4.0
+    - php: 5.6
+      env: WP_VERSION=4.4.0
 
 before_script:
-  - composer lint
-  - mysql -u root -e "GRANT ALL PRIVILEGES ON wp_tests.* TO wp IDENTIFIED BY 'password';"
-  - bash tests/bin/install-wp-tests.sh wp_tests wp password
+  - mysql -u root -e "GRANT ALL PRIVILEGES ON ${WP_DB_NAME}.* TO ${WP_DB_USER} IDENTIFIED BY '${WP_DB_PASS}';"
+  - mysql -u root -e "CREATE DATABASE ${WP_DB_NAME};"
 
-script: composer test
+install:
+  - composer validate --strict
+  - composer install
+  - composer require --dev --update-with-dependencies johnpbloch/wordpress:${WP_VERSION} wp-phpunit/wp-phpunit:${WP_VERSION} phpunit/phpunit
+  - composer show
+
+script:
+  - composer test
