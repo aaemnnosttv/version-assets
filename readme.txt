@@ -2,9 +2,9 @@
 Contributors: aaemnnosttv
 Tags: assets, browser cache, cache bust, css, js, styles, scripts
 Requires at least: 2.6.0
-Tested up to: 4.9.8
+Tested up to: 5.1.1
 Requires PHP: 5.4
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
