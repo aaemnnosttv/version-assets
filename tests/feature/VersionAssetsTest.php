@@ -15,6 +15,13 @@ class VersionAssetsTest extends \WP_UnitTestCase
         if (file_exists(WP_CONTENT_DIR . '/test.css')) {
             unlink(WP_CONTENT_DIR . '/test.css');
         }
+
+        wp_styles()->registered = [];
+        wp_styles()->to_do = [];
+        wp_styles()->done = [];
+        wp_scripts()->registered = [];
+        wp_scripts()->to_do = [];
+        wp_scripts()->done = [];
     }
 
     /** @test */
