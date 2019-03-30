@@ -6,7 +6,7 @@
  * Author: Evan Mattson
  * Author URI: https://aaemnnost.tv
  * License: GPLv2
- * Version: 1.0
+ * Version: 1.1
  */
 
 namespace VersionAssets;
