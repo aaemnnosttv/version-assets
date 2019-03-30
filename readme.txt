@@ -19,5 +19,8 @@ Automatically apply a content-based version on all of your assets to optimize br
 2. Diff of affected assets in footer scripts (purple: before, green: after)
 
 == Changelog ==
+= 1.1 (2019-03-30) =
+* Introduce `version_assets/asset_version` filter.
+
 = 1.0 (2017-09-18) =
 * Initial release!
