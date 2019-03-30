@@ -22,9 +22,13 @@ trait HashifyVersion
      */
     public function add($handle, $src, $deps = [], $ver = false, $args = null)
     {
-        if (! $ver || strlen($ver) < 32) {
-            $ver = get_hash($src) ?: $ver;
-        }
+        /**
+         * Filter the asset version.
+         *
+         * @param string|mixed $version_hash string file hash or version passed to method if not locatable/hashable.
+         * @param array        $asset_args   Arguments the asset was registered with.
+         */
+        $ver = apply_filters('version_assets/asset_version', get_hash($src) ?: $ver, compact('handle', 'src', 'deps', 'ver', 'args'));
 
         return parent::add($handle, $src, $deps, $ver, $args);
     }

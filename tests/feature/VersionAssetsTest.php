@@ -66,6 +66,24 @@ class VersionAssetsTest extends \WP_UnitTestCase
         $this->assertInstanceOf(Scripts::class, $instance);
     }
 
+    /** @test */
+    function the_hashed_version_can_be_filtered()
+    {
+        add_filter('version_assets/asset_version', function ($hashed_version, $args) {
+            $this->assertSame('registered-version', $hashed_version); // file doesn't exist to hash
+            $this->assertSame('registered-version', $args['ver']);
+            $this->assertSame('test', $args['handle']);
+            $this->assertSame(WP_CONTENT_URL . '/test.css', $args['src']);
+            $this->assertSame([], $args['deps']);
+
+            return 'version-returned-from-filter';
+        }, 10, 2);
+
+        wp_enqueue_style('test', WP_CONTENT_URL . '/test.css', [], 'registered-version');
+        $this->assertContains('ver=version-returned-from-filter', $this->get_enqueued_url('test'));
+    }
+
+
     private function get_enqueued_url($handle)
     {
         ob_start();
