@@ -33,5 +33,4 @@ install:
   - composer install
   - composer show
 
-script:
-  - composer test
+script: composer test
