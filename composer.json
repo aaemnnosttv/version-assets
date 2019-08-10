@@ -25,7 +25,7 @@
         "phpunit/phpunit": "^5 || ^6",
         "roots/wordpress": "^5",
         "squizlabs/php_codesniffer": "^3.0",
-        "wp-phpunit/wp-phpunit": "5.1.1"
+        "wp-phpunit/wp-phpunit": "^5"
     },
     "scripts": {
         "lint": "phpcs",
