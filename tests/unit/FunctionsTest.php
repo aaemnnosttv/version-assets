@@ -37,10 +37,11 @@ class FunctionsTest extends \WP_UnitTestCase
     function local_path_provider()
     {
         return [
+            // Core registers its assets using relative paths, regardless of subdirectory or not.
+            ['/wp-admin/css/common.css', ABSPATH . 'wp-admin/css/common.css'],
             ['/wp-admin/css/about.css', ABSPATH . 'wp-admin/css/about.css'],
             [admin_url('css/about.css'), ABSPATH . 'wp-admin/css/about.css'],
             [admin_url('js/common.js'), ABSPATH . 'wp-admin/js/common.js'],
-            ['wp-includes/js/wp-emoji.js', ABSPATH . 'wp-includes/js/wp-emoji.js'],
         ];
     }
 }

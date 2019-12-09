@@ -27,11 +27,25 @@ function get_hash($src)
  */
 function get_local_path($src)
 {
+    // Local srcs are either relative or use the local domain.
     if (! is_relative_url($src) && ! is_local_domain($src)) {
         return false;
     }
 
-    $web_root  = apply_filters('version_assets/web_root', dirname(WP_CONTENT_DIR));
+    /**
+     * Filter the path used for the web root.
+     */
+    $web_root = apply_filters('version_assets/web_root', dirname(WP_CONTENT_DIR));
+    $web_root = untrailingslashit($web_root);
+
+    // Core assets are all registered using relative srcs, from ABSPATH (not web root),
+    // so we must rewrite the src if ABSPATH is not the same as the web root to get the correct path.
+    if (preg_match('#^/wp-(admin|includes)/#', $src) && $web_root !== untrailingslashit(ABSPATH)) {
+        $preg_quoted_web_root = preg_quote($web_root, '#');
+        $wordpress_path = preg_replace("#^$preg_quoted_web_root#", '', untrailingslashit(ABSPATH));
+        $src = path_join($wordpress_path, ltrim($src, '/'));
+    }
+
     $file_path = path_join($web_root, ltrim(parse_url($src, PHP_URL_PATH), '/\\'));
 
     if (realpath($file_path)) {
