@@ -62,3 +62,9 @@ define( 'WP_TESTS_TITLE', 'Test Blog' );
 define( 'WP_PHP_BINARY', 'php' );
 
 define( 'WPLANG', '' );
+
+if ( getenv( 'TEST_SUBDIRECTORY_INSTALL' ) ) {
+    define( 'WP_CONTENT_DIR', dirname( ABSPATH ) . '/content' );
+    define( 'WP_CONTENT_URL', 'http://' . WP_TESTS_DOMAIN . '/content' );
+    define( 'WP_SITEURL', 'http://' . WP_TESTS_DOMAIN . '/wordpress' );
+}
