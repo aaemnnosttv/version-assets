@@ -42,6 +42,8 @@ class FunctionsTest extends \WP_UnitTestCase
             ['/wp-admin/css/about.css', ABSPATH . 'wp-admin/css/about.css'],
             [admin_url('css/about.css'), ABSPATH . 'wp-admin/css/about.css'],
             [admin_url('js/common.js'), ABSPATH . 'wp-admin/js/common.js'],
+            // Asset aliases have an src of `false`
+            [false, false],
         ];
     }
 }

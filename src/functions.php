@@ -27,6 +27,10 @@ function get_hash($src)
  */
 function get_local_path($src)
 {
+    if (! $src) {
+        return false;
+    }
+
     // Local srcs are either relative or use the local domain.
     if (! is_relative_url($src) && ! is_local_domain($src)) {
         return false;
