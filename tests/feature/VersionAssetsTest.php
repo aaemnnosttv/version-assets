@@ -51,6 +51,20 @@ class VersionAssetsTest extends \WP_UnitTestCase
     }
 
     /** @test */
+    function it_preserves_the_registered_version_if_the_src_is_falsy()
+    {
+        wp_register_style('test-real', WP_CONTENT_URL . '/test.css', [], 'registered-version');
+        // Some assets may have false for their src which is used for aliases (e.g. 'jquery').
+        wp_register_style('test-alias', false, ['test-real'], 'registered-version');
+        wp_enqueue_style('test-alias');
+
+        $url = $this->get_enqueued_url('test-alias');
+        parse_str(parse_url($url, PHP_URL_QUERY), $url_query_params);
+        $this->assertContains('registered-version', $url);
+        $this->assertEquals(['ver' => 'registered-version'], $url_query_params);
+    }
+
+    /** @test */
     function it_replaces_the_global_wp_styles_instance_when_it_is_initialzed()
     {
         $instance = wp_styles();
