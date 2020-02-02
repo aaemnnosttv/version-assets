@@ -11,7 +11,9 @@ namespace VersionAssets;
  */
 function get_hash($src)
 {
-    if ($file_path = get_local_path($src)) {
+    $file_path = get_local_path($src);
+
+    if ($file_path && is_file($file_path) && is_readable($file_path)) {
         return md5_file($file_path);
     }
 
