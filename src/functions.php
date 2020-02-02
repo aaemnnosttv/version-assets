@@ -13,7 +13,7 @@ function get_hash($src)
 {
     $file_path = get_local_path($src);
 
-    if ($file_path && is_file($file_path) && is_readable($file_path)) {
+    if ($file_path && is_readable($file_path)) {
         return md5_file($file_path);
     }
 
@@ -53,9 +53,10 @@ function get_local_path($src)
     }
 
     $file_path = path_join($web_root, ltrim(parse_url($src, PHP_URL_PATH), '/\\'));
+    $real_path = realpath($file_path);
 
-    if (realpath($file_path)) {
-        return $file_path;
+    if ($real_path && is_file($real_path)) {
+        return $real_path;
     }
 
     return false;
