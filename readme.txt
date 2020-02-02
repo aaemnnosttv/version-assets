@@ -19,6 +19,9 @@ Automatically apply a content-based version on all of your assets to optimize br
 2. Diff of affected assets in footer scripts (purple: before, green: after)
 
 == Changelog ==
+= 1.1.2 (2020-02-02) =
+* Fixed a potential notice for script/style aliases which resolved to a local directory.
+
 = 1.1.1 (2019-12-09) =
 * Fixed version rewriting of core assets when WordPress is in its own directory.
 
