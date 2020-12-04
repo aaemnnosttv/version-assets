@@ -43,7 +43,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: composer validate --strict
       - run: composer require --dev --no-update roots/wordpress:${{ matrix.wp }} wp-phpunit/wp-phpunit:${{ matrix.wp }}
-      - run: composer install
+      - run: composer install --no-progress --no-interaction
       - run: composer show
       - name: Run PHPUnit
         run: composer test
