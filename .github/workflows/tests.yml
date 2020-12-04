@@ -20,18 +20,27 @@ jobs:
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
         ports:
-          - 3306:3306
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
     env:
       WP_DB_USER: wp
       WP_DB_PASS: password
       WP_DB_HOST: 127.0.0.1
       WP_DB_NAME: wp_tests
+      MYSQL_TCP_PORT: ${{ job.services.mysql.ports[3306] }}
     name: PHP ${{ matrix.php }}
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+      - name: Verify database connection
+        env:
+          PORT: ${{ job.services.mysql.ports[3306] }}
+        run: |
+          while ! mysqladmin ping -h ${WP_DB_HOST} --silent; do
+            sleep 1
+          done
       - name: Create database
         run: |
           mysql -u root -h ${WP_DB_HOST} -e "GRANT ALL PRIVILEGES ON ${WP_DB_NAME}.* TO ${WP_DB_USER} IDENTIFIED BY '${WP_DB_PASS}';"
