@@ -23,9 +23,9 @@ jobs:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
     env:
+      DB_HOST: 127.0.0.1
       WP_DB_USER: wp
       WP_DB_PASS: password
-      WP_DB_HOST: 127.0.0.1
       WP_DB_NAME: wp_tests
     name: PHP ${{ matrix.php }} / WP ${{ matrix.wp }}
     steps:
@@ -47,3 +47,5 @@ jobs:
       - run: composer show
       - name: Run PHPUnit
         run: composer test
+        env:
+          WP_DB_HOST: ${{ env.DB_HOST }}:${{ job.services.mysql.ports[3306] }}
