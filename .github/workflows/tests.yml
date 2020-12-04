@@ -36,7 +36,7 @@ jobs:
       WP_DB_PASS: password
       WP_DB_NAME: wp_tests
       TEST_SUBDIRECTORY_INSTALL: ${{ matrix.subdir_install }}
-    name: PHP ${{ matrix.php }} / WP ${{ matrix.wp }}
+    name: PHP ${{ matrix.php }} / WP ${{ matrix.wp }} / Sub-dir ${{ matrix.subdir_install }}
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
