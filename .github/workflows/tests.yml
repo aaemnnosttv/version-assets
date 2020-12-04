@@ -42,6 +42,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+          extensions: mysqli
       - name: Create database
         env:
           MYSQL_TCP_PORT: ${{ job.services.mysql.ports[3306] }}
