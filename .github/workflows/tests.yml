@@ -20,7 +20,7 @@ jobs:
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
         ports:
-          - 3306: 3306
+          - 3306:3306
     env:
       WP_DB_USER: wp
       WP_DB_PASS: password
