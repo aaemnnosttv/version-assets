@@ -40,7 +40,7 @@ jobs:
           mysql -u root -h ${WP_DB_HOST} -e "CREATE DATABASE ${WP_DB_NAME};"
           mysql -u root -h ${WP_DB_HOST} -e "CREATE USER ${WP_DB_USER} IDENTIFIED BY '${WP_DB_PASS}';"
           mysql -u root -h ${WP_DB_HOST} -e "GRANT ALL PRIVILEGES ON ${WP_DB_NAME}.* TO ${WP_DB_USER};"
-      - use: actions/checkout@v2
+      - uses: actions/checkout@v2
       - run: composer validate --strict
       - run: composer require --dev --no-update roots/wordpress:${{ matrix.wp }} wp-phpunit/wp-phpunit:${{ matrix.wp }}
       - run: composer install
