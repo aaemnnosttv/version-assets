@@ -12,7 +12,7 @@ jobs:
           # - 7.3
           # - 7.2
           # - 5.6
-        wp: '*'
+        wp: "*"
     services:
       mysql:
         image: mysql
