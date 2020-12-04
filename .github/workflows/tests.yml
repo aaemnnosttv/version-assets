@@ -1,0 +1,61 @@
+name: Tests
+
+on: pull_request
+
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 7.4
+          - 7.3
+          - 5.6
+        wp:
+          - "*"
+        subdir_install:
+          - 0
+        include:
+          - php: 7.4
+            wp: "*"
+            subdir_install: 1
+          - php: 5.6
+            wp: 4.4.0
+            subdir_install: 0
+    services:
+      mysql:
+        image: mysql:5
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+    env:
+      DB_HOST: 127.0.0.1
+      WP_DB_USER: wp
+      WP_DB_PASS: password
+      WP_DB_NAME: wp_tests
+      TEST_SUBDIRECTORY_INSTALL: ${{ matrix.subdir_install }}
+    name: PHP ${{ matrix.php }} / WP ${{ matrix.wp }} / Sub-dir ${{ matrix.subdir_install }}
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysqli
+      - name: Create database
+        env:
+          MYSQL_TCP_PORT: ${{ job.services.mysql.ports[3306] }}
+        run: |
+          mysql -u root -h ${DB_HOST} -e "CREATE DATABASE ${WP_DB_NAME};"
+          mysql -u root -h ${DB_HOST} -e "CREATE USER ${WP_DB_USER} IDENTIFIED BY '${WP_DB_PASS}';"
+          mysql -u root -h ${DB_HOST} -e "GRANT ALL PRIVILEGES ON ${WP_DB_NAME}.* TO ${WP_DB_USER};"
+      - uses: actions/checkout@v2
+      - run: composer validate --strict
+      - run: composer require --dev --no-update roots/wordpress:${{ matrix.wp }} wp-phpunit/wp-phpunit:${{ matrix.wp }}
+      - run: composer install --no-progress --no-interaction
+      - run: composer show
+      - name: Run PHPUnit
+        run: composer test
+        env:
+          WP_DB_HOST: ${{ env.DB_HOST }}:${{ job.services.mysql.ports[3306] }}
