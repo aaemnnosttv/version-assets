@@ -27,7 +27,7 @@ jobs:
       WP_DB_PASS: password
       WP_DB_HOST: 127.0.0.1
       WP_DB_NAME: wp_tests
-    name: PHP ${{ matrix.php }}
+    name: PHP ${{ matrix.php }} / WP ${{ matrix.wp }}
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
