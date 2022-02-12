@@ -3,3 +3,4 @@
 !/vendor/.gitkeep
 /wordpress
 /composer.lock
+.phpunit.result.cache
