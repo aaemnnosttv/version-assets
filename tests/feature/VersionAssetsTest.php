@@ -8,9 +8,9 @@ use VersionAssets\Styles;
 class VersionAssetsTest extends \WP_UnitTestCase
 {
 
-    public function tearDown()
+    public function tear_down()
     {
-        parent::tearDown();
+        parent::tear_down();
 
         if (file_exists(WP_CONTENT_DIR . '/test.css')) {
             unlink(WP_CONTENT_DIR . '/test.css');
@@ -35,7 +35,7 @@ class VersionAssetsTest extends \WP_UnitTestCase
 
         $url = $this->get_enqueued_url('test');
         parse_str(parse_url($url, PHP_URL_QUERY), $url_query_params);
-        $this->assertContains($hash, $url);
+        $this->assertStringContainsString($hash, $url);
         $this->assertEquals(['ver' => $hash], $url_query_params);
     }
 
@@ -46,7 +46,7 @@ class VersionAssetsTest extends \WP_UnitTestCase
 
         $url = $this->get_enqueued_url('test-missing');
         parse_str(parse_url($url, PHP_URL_QUERY), $url_query_params);
-        $this->assertContains('registered-version', $url);
+        $this->assertStringContainsString('registered-version', $url);
         $this->assertEquals(['ver' => 'registered-version'], $url_query_params);
     }
 
@@ -60,7 +60,7 @@ class VersionAssetsTest extends \WP_UnitTestCase
 
         $url = $this->get_enqueued_url('test-alias');
         parse_str(parse_url($url, PHP_URL_QUERY), $url_query_params);
-        $this->assertContains('registered-version', $url);
+        $this->assertStringContainsString('registered-version', $url);
         $this->assertEquals(['ver' => 'registered-version'], $url_query_params);
     }
 
@@ -94,7 +94,7 @@ class VersionAssetsTest extends \WP_UnitTestCase
         }, 10, 2);
 
         wp_enqueue_style('test', WP_CONTENT_URL . '/test.css', [], 'registered-version');
-        $this->assertContains('ver=version-returned-from-filter', $this->get_enqueued_url('test'));
+        $this->assertStringContainsString('ver=version-returned-from-filter', $this->get_enqueued_url('test'));
     }
 
 

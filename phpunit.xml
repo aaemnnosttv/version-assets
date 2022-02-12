@@ -4,19 +4,20 @@
          backupGlobals="false"
          bootstrap="tests/bootstrap.php"
          colors="true"
-         forceCoversAnnotation="true"
          beStrictAboutCoversAnnotation="true"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
 >
 
-    <testsuite name="feature">
-        <directory suffix=".php">tests/feature</directory>
-    </testsuite>
+    <testsuites>
+        <testsuite name="feature">
+            <directory suffix=".php">tests/feature</directory>
+        </testsuite>
 
-    <testsuite name="unit">
-        <directory suffix=".php">tests/unit</directory>
-    </testsuite>
+        <testsuite name="unit">
+            <directory suffix=".php">tests/unit</directory>
+        </testsuite>
+    </testsuites>
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
