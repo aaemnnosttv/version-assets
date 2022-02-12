@@ -8,9 +8,9 @@ use VersionAssets\Styles;
 class VersionAssetsTest extends \WP_UnitTestCase
 {
 
-    public function tearDown()
+    public function tear_down()
     {
-        parent::tearDown();
+        parent::tear_down();
 
         if (file_exists(WP_CONTENT_DIR . '/test.css')) {
             unlink(WP_CONTENT_DIR . '/test.css');
