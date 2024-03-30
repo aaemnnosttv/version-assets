@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         php:
-          - 8.0
+          - 8.1
           - 7.4
           - 5.6
         wp:
@@ -50,11 +50,13 @@ jobs:
           mysql -u root -h ${DB_HOST} -e "CREATE DATABASE ${WP_DB_NAME};"
           mysql -u root -h ${DB_HOST} -e "CREATE USER ${WP_DB_USER} IDENTIFIED BY '${WP_DB_PASS}';"
           mysql -u root -h ${DB_HOST} -e "GRANT ALL PRIVILEGES ON ${WP_DB_NAME}.* TO ${WP_DB_USER};"
-      - uses: actions/checkout@v2
-      - run: composer validate --strict
+      - uses: actions/checkout@v4
+      - run: composer validate
       - run: composer require --dev --no-update roots/wordpress:${{ matrix.wp }} wp-phpunit/wp-phpunit:${{ matrix.wp }}
       - run: composer install --no-progress --no-interaction
       - run: composer show
+      - name: Run PHPCS
+        run: composer lint
       - name: Run PHPUnit
         run: composer test
         env:
