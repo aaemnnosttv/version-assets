@@ -1,6 +1,6 @@
 === Version Assets ===
 Contributors: aaemnnosttv
-Tags: assets, browser cache, cache bust, css, js, styles, scripts
+Tags: content hash, css, js, styles, scripts
 Requires at least: 2.6.0
 Tested up to: 6.4
 Requires PHP: 5.4
