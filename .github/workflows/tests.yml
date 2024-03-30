@@ -55,6 +55,8 @@ jobs:
       - run: composer require --dev --no-update roots/wordpress:${{ matrix.wp }} wp-phpunit/wp-phpunit:${{ matrix.wp }}
       - run: composer install --no-progress --no-interaction
       - run: composer show
+      - name: Run PHPCS
+        run: composer lint
       - name: Run PHPUnit
         run: composer test
         env:
