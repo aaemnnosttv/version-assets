@@ -10,6 +10,9 @@
 
   <!-- Ignore Composer dependencies -->
   <exclude-pattern>vendor/</exclude-pattern>
+  <exclude-pattern>wordpress/</exclude-pattern>
+  <!-- Ignore Test config/bootstrap -->
+  <exclude-pattern>tests/*.php</exclude-pattern>
 
   <!-- Show colors in console -->
   <arg value="-colors"/>
