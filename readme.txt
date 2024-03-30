@@ -2,9 +2,9 @@
 Contributors: aaemnnosttv
 Tags: assets, browser cache, cache bust, css, js, styles, scripts
 Requires at least: 2.6.0
-Tested up to: 5.9
+Tested up to: 6.4
 Requires PHP: 5.4
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,9 @@ Automatically apply a content-based version on all of your assets to optimize br
 2. Diff of affected assets in footer scripts (purple: before, green: after)
 
 == Changelog ==
+= 1.1.3 (2024-03-29) =
+* Fixed a potential notice from core introduced in WP 5.8. See [#9](https://github.com/aaemnnosttv/version-assets/issues/9).
+
 = 1.1.2 (2020-02-02) =
 * Fixed a potential notice for script/style aliases which resolved to a local directory.
 
