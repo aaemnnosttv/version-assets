@@ -2,7 +2,7 @@
 Contributors: aaemnnosttv
 Tags: content hash, css, js, styles, scripts
 Requires at least: 2.6.0
-Tested up to: 6.5
+Tested up to: 6.6
 Requires PHP: 5.4
 Stable tag: 1.1.3
 License: GPLv2 or later
